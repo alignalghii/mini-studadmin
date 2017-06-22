@@ -22,14 +22,7 @@ function parse {
 					fi;
 			fi;;
 		test)
-			(
-				set -o xtrace;
-				curl         localhost:8000;
-				curl         localhost:8000/;
-				curl -X POST localhost:8000;
-				curl         localhost:8000/nonexisting;
-				curl         localhost:8000/nonexisting.php;
-			);;
+			testWithHosts localhost:8000 mini-studadmin http://web.studentadministrationframework.nhely.hu;;
 		*)
 			help;
 	esac;

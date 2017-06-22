@@ -8,6 +8,6 @@ class StudentController
 
 	public static function index()
 	{
-		echo 'Students list...';
+		echo "Students list...\n";
 	}
 }

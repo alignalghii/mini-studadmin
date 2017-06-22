@@ -10,6 +10,7 @@ class Router
 		$this->routes = $routes;
 		$this->method = $superglobal['REQUEST_METHOD'];
 		$this->uri    = $superglobal['REQUEST_URI'];
+		if (Config::DEBUG) echo '[' . $this->method . ' ' . $this->uri . '] ';
 	}
 
 	public function routeOrReport()
