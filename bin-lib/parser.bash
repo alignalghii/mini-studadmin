@@ -21,8 +21,13 @@ function parse {
 						then kill "$pid";
 					fi;
 			fi;;
-		test)
+		test-HTTP)
 			testWithHosts localhost:8000 mini-studadmin http://web.studentadministrationframework.nhely.hu;;
+		test-unit)
+			(
+				cd test;
+				php front-controller.php;
+			);;
 		*)
 			help;
 	esac;

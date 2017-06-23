@@ -14,6 +14,9 @@ function testWithHost {
 	testSo $host "curl                             $host/";
 	testSo $host "curl -X POST -H Content-Length:0 $host";
 	testSo $host "curl                             $host/student";
+	testSo $host "curl                             $host/student/12";
+	testSo $host "curl                             $host/student/";
+	testSo $host "curl                             $host/student/1a2";
 	testSo $host "curl                             $host/nonexisting";
 	testSo $host "curl                             $host/nonexisting.php";
 }

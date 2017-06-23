@@ -15,30 +15,46 @@ class Router
 
 	public function routeOrReport()
 	{
-		$status = $this->route();
-		if (!$status) {
+		$matched = $this->route();
+		if (!$matched) {
 			printf("Request `%s %s` does not match any routes\n", $this->method, $this->uri);
 		}
 	}
 
 	private function route()
 	{
-		foreach ($this->routes as $uri => /*list($method, $controller, $action)*/ $package) { // only since PHP 7
+		foreach ($this->routes as $sluggedUri => /*list($method, $controller, $action)*/ $package) { // only since PHP 7
 			list($method, $controller, $action) = $package;
-			$thatIsIt = $this->match($method, $uri, $controller, $action);
-			if ($thatIsIt) {
+			$matched = $this->executeIfMatching($method, $sluggedUri, $controller, $action);
+			if ($matched) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private function match($method, $uri, $controller, $action)
+	private function executeIfMatching($method, $sluggedUri, $controller, $action)
 	{
-		$ok = [$method, $uri] === [$this->method, $this->uri];
-		if ($ok) {
-			$controller::$action();
+		$maybeArgs = $this->match($method, $sluggedUri);
+		return $maybeArgs->maybe(
+			function () {return false;},
+			function ($args) use ($controller, $action)
+			{
+				call_user_func_array([$controller, $action], $args);
+				return true;
+			}
+		);
+	}
+
+	private function match($method, $sluggedUri)
+	{
+		$methodsMatched = $method == $this->method;
+		$urisMatched    = preg_match("!^$sluggedUri$!", $this->uri, $matches);
+		if ($methodsMatched && $urisMatched) {
+			array_shift($matches);
+			return Maybe::just($matches);
+		} else {
+			return Maybe::nothing();
 		}
-		return $ok;
 	}
 }

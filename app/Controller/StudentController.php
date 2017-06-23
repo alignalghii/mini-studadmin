@@ -10,4 +10,9 @@ class StudentController
 	{
 		echo "Students list...\n";
 	}
+
+	public static function show($id)
+	{
+		printf("Student #%s\n", $id);
+	}
 }
