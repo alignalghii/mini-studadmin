@@ -1,3 +1,4 @@
+
 function testSo {
 	host=$1;
 	command=$2;
@@ -17,6 +18,7 @@ function testWithHost {
 	testSo $host "curl                             $host/student/12";
 	testSo $host "curl                             $host/student/";
 	testSo $host "curl                             $host/student/1a2";
+	testSo $host "curl -d name=John -d age=23      $host/student/12";
 	testSo $host "curl                             $host/nonexisting";
 	testSo $host "curl                             $host/nonexisting.php";
 }

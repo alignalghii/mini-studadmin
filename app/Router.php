@@ -3,13 +3,18 @@
 class Router
 {
 	private $routes;
+	private $request;
+	/** Cached properties from $request: */
 	private $method, $uri;
 
-	public function __construct($routes, $superglobal)
+	public function __construct($routes, $request)
 	{
-		$this->routes = $routes;
-		$this->method = $superglobal['REQUEST_METHOD'];
-		$this->uri    = $superglobal['REQUEST_URI'];
+		$this->routes  = $routes;
+		$this->request = $request;
+		/** Cache: */
+		$this->method  = $request->method();
+		$this->uri     = $request->uri();
+		/** Debug: */
 		if (Config::DEBUG) echo '[' . $this->method . ' ' . $this->uri . '] ';
 	}
 
@@ -23,23 +28,26 @@ class Router
 
 	private function route()
 	{
-		foreach ($this->routes as $sluggedUri => /*list($method, $controller, $action)*/ $package) { // only since PHP 7
-			list($method, $controller, $action) = $package;
-			$matched = $this->executeIfMatching($method, $sluggedUri, $controller, $action);
-			if ($matched) {
-				return true;
+		foreach ($this->routes as $sluggedUri => $uriFunctionalities) {
+			foreach ($uriFunctionalities as $method => $controllerAction) {
+				$matched = $this->executeIfMatching($method, $sluggedUri, $controllerAction);
+				if ($matched) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 
-	private function executeIfMatching($method, $sluggedUri, $controller, $action)
+	private function executeIfMatching($method, $sluggedUri, $controllerAction)
 	{
 		$maybeArgs = $this->match($method, $sluggedUri);
 		return $maybeArgs->maybe(
 			function () {return false;},
-			function ($args) use ($controller, $action)
+			function ($args) use ($controllerAction)
 			{
+				list($controllerClass, $action) = $controllerAction;
+				$controller = new $controllerClass($this->request);
 				call_user_func_array([$controller, $action], $args);
 				return true;
 			}
