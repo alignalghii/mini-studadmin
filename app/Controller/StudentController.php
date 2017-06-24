@@ -13,12 +13,12 @@ class StudentController extends \Controller
 
 	public function show($id)
 	{
-		printf("Student #%s\n", $id);
+		echo "Show student #$id\n";
 	}
 
-	public function newOrUpdate($id)
+	public function update($id)
 	{
-		printf("Create/update student #%s with the following data:\n", $id);
+		echo "Update student #$id with the following data:\n";
 		var_dump($this->request()->post());
 	}
 }
