@@ -21,6 +21,24 @@ class Maybe
 		                     : $nothingCallback();
 	}
 
+	public function eq($maybeOther)
+	{
+		return $this->maybe(
+			function () use ($maybeOther) {
+				return $maybeOther->maybe(
+					function () {return true;},                                                 // Nothing == Nothing
+					function ($otherValue) {return false;}                                      // Nothing /= Just _
+				);
+			},
+			function ($thisValue) use ($maybeOther) {
+				return $maybeOther->maybe(
+					function () {return false;},                                                // Just _  /= Nothing
+					function ($otherValue) use ($thisValue) {return $thisValue == $otherValue;} // Just x  == Just y    =    x == y
+				);
+			}
+		);
+	}
+
 	private function __construct($isJust, $value = null)
 	{
 		$this->isJust = $isJust;

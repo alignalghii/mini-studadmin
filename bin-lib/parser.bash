@@ -26,7 +26,7 @@ function parse {
 		test-unit)
 			(
 				cd test;
-				php front-controller.php;
+				php frontal-test.php;
 			);;
 		*)
 			help;
