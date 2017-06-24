@@ -21,9 +21,9 @@ function parse {
 						then kill "$pid";
 					fi;
 			fi;;
-		test-HTTP)
+		test-out)
 			testWithHosts localhost:8000 mini-studadmin http://web.studentadministrationframework.nhely.hu;;
-		test-unit)
+		test-in)
 			(
 				cd test;
 				php frontal-test.php;

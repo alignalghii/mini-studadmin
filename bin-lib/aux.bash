@@ -11,7 +11,7 @@ function message_error {
 }
 
 
-function help { message "Usage:\n\tserver-start\n\tserver-status\n\tserver-stop\n\ttest-HTTP\n\ttest-unit"; }
+function help { message "Usage:\n\tserver-start\n\tserver-status\n\tserver-stop\n\ttest-out\n\ttest-in"; }
 
 function server-status { ps aux | grep 'php -S localhost:8000' | grep -v grep; }
 
