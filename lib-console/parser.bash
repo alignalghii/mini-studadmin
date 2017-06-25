@@ -33,13 +33,15 @@ function parse {
 		configure)
 			configure;;
 		database-create)
-			database-create;;
+			database-create;; # autodetect by config.sed module and db_name function
 		database-drop)
-			database-drop;;
+			database-drop;;   # autodetect by config.sed module and db_name function
 		schema-create)
-			schema-create;;
+			schema-create "`db_name`";;
 		schema-drop)
-			schema-drop;;
+			schema-drop "`db_name`";;
+		dbtest)
+			dbtest-runner "`db_name`";;
 		*)
 			help;
 	esac;

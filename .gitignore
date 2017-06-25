@@ -1,2 +1,3 @@
 app/Config.php
 database/config.sed
+database/testsuites/*/*.actual.tsv
