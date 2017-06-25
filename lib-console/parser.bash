@@ -2,6 +2,8 @@
 
 function parse {
 	case "$1" in
+		help)
+			help;;
 		server-start)
 			(
 				cd web;
@@ -28,6 +30,16 @@ function parse {
 				cd test;
 				php frontal-test.php;
 			);;
+		configure)
+			configure;;
+		database-create)
+			database-create;;
+		database-drop)
+			database-drop;;
+		schema-create)
+			schema-create;;
+		schema-drop)
+			schema-drop;;
 		*)
 			help;
 	esac;

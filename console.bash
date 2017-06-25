@@ -1,8 +1,10 @@
 #!/bin/bash
 
-source bin-lib/aux.bash;    # used by `parser` module
-source bin-lib/parser.bash; # used by `parse` function call
-source bin-lib/test.bash;   # used by `parse` function call
+source lib-console/aux.bash;       # used by `parser` module
+source lib-console/parser.bash;    # used by `parse` function call
+source lib-console/test.bash;      # used by `parse` function call
+source lib-console/configure.bash; # used by `parse` function call
+source lib-console/database.bash;  # used by `parse` function call
 
 if test $# -eq 0;
 	then help;
