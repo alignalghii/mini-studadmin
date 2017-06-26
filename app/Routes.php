@@ -31,15 +31,15 @@ class Routes
 			],
 			'GS'  => [
 						'fixture'     => [['GET',  '/student'        ], [], []                             ],
-						'expectation' => Maybe::just("Students list...\n")
+						'expectation' => Maybe::just("Students list:\n" . OB::outputOf1('var_dump', [['id' => 1, 'name' => 'Ruth', 'is_male' => 0, 'place_of_birth' => 'Budapest', 'date_of_birth' => '1970-02-05', 'email' => 'ruth@computing.hu'], ['id' => 2, 'name' => 'Joe', 'is_male' => 1, 'place_of_birth' => 'New York', 'date_of_birth' => '1975-06-12', 'email' => 'joe@it.us'], ['id' => 3, 'name' => 'Rachel', 'is_male' => 0, 'place_of_birth' => 'Berlin', 'date_of_birth' => '1968-01-30', 'email' => 'rachel@math.de'], ['id' => 4, 'name' => 'Hilde', 'is_male' => 0, 'place_of_birth' => 'Wien', 'date_of_birth' => '1985-08-11', 'email' => 'hilde@chem.at']]))
 			],
 			'PS'  => [
 						'fixture'     => [['POST', '/student'        ], [], []                             ],
 						'expectation' => Maybe::nothing()
 			],
 			'GS1' => [
-						'fixture'     => [['GET',  '/student/12'     ], [], []                             ],
-						'expectation' => Maybe::just("Show student #12\n")
+						'fixture'     => [['GET',  '/student/2'     ], [], []                              ],
+						'expectation' => Maybe::just("Show student #2:\n" . OB::outputOf1('var_dump', ['id' => 2, 'name' => 'Joe', 'is_male' => 1, 'place_of_birth' => 'New York', 'date_of_birth' => '1975-06-12', 'email' => 'joe@it.us']))
 			],
 			'GS0' => [
 						'fixture'     => [['GET',  '/student/'       ], [], []                             ],
