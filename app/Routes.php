@@ -33,7 +33,7 @@ class Routes
 			],
 			'GS'  => [
 						'fixture'     => [['GET',  '/student'        ], [], []                             ],
-						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student.txt'])
+						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student.html'])
 			],
 			'PS'  => [
 						'fixture'     => [['POST', '/student'        ], [], []                             ],
@@ -41,7 +41,7 @@ class Routes
 			],
 			'GS1' => [
 						'fixture'     => [['GET',  '/student/2'     ], [], []                              ],
-						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student-2.txt'])
+						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student-2.html'])
 			],
 			'GS0' => [
 						'fixture'     => [['GET',  '/student/'       ], [], []                             ],

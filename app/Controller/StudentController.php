@@ -11,18 +11,20 @@ class StudentController extends \Controller
 
 	public function index()
 	{
+		$title = 'List of all students';
 		$studentRepository = new Repository(StudentMetaTable::class54);
 		$students = $studentRepository->findAll();
-		echo "Students list:\n";
-		var_dump($students);
+		$viewModel = compact('title', 'students');
+		$this->render($viewModel, 'Student/index');
 	}
 
 	public function show($id)
 	{
+		$title = "Show student #$id";
 		$studentRepository = new Repository(StudentMetaTable::class54);
 		$student = $studentRepository->find($id);
-		echo "Show student #$id:\n";
-		var_dump($student);
+		$viewModel = compact('title', 'student');
+		$this->render($viewModel, 'Student/show');
 	}
 
 	public function update($id)
