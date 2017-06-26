@@ -21,6 +21,14 @@ class Maybe
 		                     : $nothingCallback();
 	}
 
+	public function map($f)
+	{
+		return $this->maybe(
+			function ()                {return static::nothing();},
+			function ($value) use ($f) {return static::just($f($value));}
+		);
+	}
+
 	public function eq($maybeOther)
 	{
 		return $this->maybe(

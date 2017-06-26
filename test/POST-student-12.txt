@@ -1,0 +1,7 @@
+Update student #12 with the following data:
+array(2) {
+  ["name"]=>
+  string(4) "John"
+  ["age"]=>
+  int(23)
+}
