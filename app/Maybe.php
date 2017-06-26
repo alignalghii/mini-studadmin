@@ -1,25 +1,18 @@
 <?php
 
-class Maybe
+abstract class Maybe
 {
-	private $isJust;
-	private $value;
-
 	public static function just($value)
 	{
-		return new Maybe(true, $value);
+		return new Just($value);
 	}
 
 	public static function nothing()
 	{
-		return new Maybe(false);
+		return new Nothing();
 	}
 
-	public function maybe($nothingCallback, $justCallback)
-	{
-		return $this->isJust ? $justCallback($this->value)
-		                     : $nothingCallback();
-	}
+	abstract public function maybe($nothingCallback, $justCallback);
 
 	public function map($f)
 	{
@@ -46,10 +39,26 @@ class Maybe
 			}
 		);
 	}
+}
 
-	private function __construct($isJust, $value = null)
+class Just extends Maybe
+{
+	private $value;
+
+	public function __construct($value) {$this->value = $value;}
+
+	public function maybe($nothingCallback, $justCallback)
 	{
-		$this->isJust = $isJust;
-		$this->value = $value;
+		return $justCallback($this->value);
+	}
+}
+
+class Nothing extends Maybe
+{
+	public function __construct() {}
+
+	public function maybe($nothingCallback, $justCallback)
+	{
+		return $nothingCallback();
 	}
 }
