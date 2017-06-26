@@ -1,5 +1,7 @@
 <?php
 
+/** Implement Haskell's `Maybe` algebraic datatype via abstract class inheritance and case classes */
+
 abstract class Maybe
 {
 	public static function just($value)
@@ -12,6 +14,7 @@ abstract class Maybe
 		return new Nothing();
 	}
 
+	/** To be defined in the so-called ``case classes' Just and Nothing */
 	abstract public function maybe($nothingCallback, $justCallback);
 
 	public function map($f)
@@ -19,6 +22,28 @@ abstract class Maybe
 		return $this->maybe(
 			function ()                {return static::nothing();},
 			function ($value) use ($f) {return static::just($f($value));}
+		);
+	}
+
+	public function defaulting($defaultValue)
+	{
+		return $this->maybe(
+			function () use ($defaultValue) {return $defaultValue;}, // constant combinator K
+			function ($value)               {return $value;}         // identity combinator I
+		);
+	}
+
+	/** Rewrite with map (map ...) and currying */
+	public function map2($maybeOther, $f)
+	{
+		return $this->maybe(
+			function ()                         {return Maybe::nothing();},
+			function ($value) use ($maybeOther) {
+				return $maybeOther->map(
+					function ()                         {return Maybe::nothing();},
+					function ($otherValue) use ($value) {return $f($value, $otherValue);}
+				);
+			}
 		);
 	}
 
@@ -40,6 +65,8 @@ abstract class Maybe
 		);
 	}
 }
+
+/** The two case classes: */
 
 class Just extends Maybe
 {
