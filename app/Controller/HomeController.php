@@ -11,6 +11,8 @@ class HomeController extends Controller
 
 	public function index()
 	{
-		echo "Hello!\n";
+		$title = 'Home';
+		$viewModel = compact('title');
+		$this->render('Home/index', $viewModel);
 	}
 }

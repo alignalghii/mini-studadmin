@@ -16,7 +16,7 @@ class Controller
 		return $this->request;
 	}
 
-	public function render($viewModel, $shortPath, $bufferName = 'content', $parentTemplate = 'base')
+	public function render($shortPath, $viewModel, $parentTemplate = 'base', $bufferName = 'content')
 	{
 		extract($viewModel);
 		ob_start();

@@ -28,7 +28,7 @@ class Routes
 		return [
 			'GI'  => [
 						'fixture'     => [['GET',  '/'               ], [], []                             ],
-						'expectation' => Maybe::just([self::IS_DIRECT_TEXT, "Hello!\n"])
+						'expectation' => Maybe::just([self::IS_FILENAME, 'GET.html'])
 			],
 			'PI'  => [
 						'fixture'     => [['POST', '/'               ], [], []                             ],

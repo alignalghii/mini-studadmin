@@ -7,6 +7,7 @@
 				<th>Place</th>
 				<th>Date</th>
 				<th rowspan="2">Email</th>
+				<th colspan="2" rowspan="2">Actions</th>
 			</tr>
 			<tr>
 				<th colspan="2">of birth</th>
@@ -16,6 +17,8 @@
 <?php foreach ($student as $attr => $val): ?>
 				<td><?php echo $val; ?></td>
 <?php endforeach; ?>
+				<td><a href="/student/<?php echo $student['id']; ?>">show</a></td>
+				<td>delete</td>
 			</tr>
 <?php endforeach; ?>
 		</table>

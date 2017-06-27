@@ -16,7 +16,7 @@ class StudentController extends Controller
 		$studentRepository = new Repository(StudentMetaTable::class54);
 		$students = $studentRepository->findAll();
 		$viewModel = compact('title', 'students');
-		$this->render($viewModel, 'Student/index');
+		$this->render('Student/index', $viewModel);
 	}
 
 	public function show($id)
@@ -25,7 +25,7 @@ class StudentController extends Controller
 		$studentRepository = new Repository(StudentMetaTable::class54);
 		$student = $studentRepository->find($id);
 		$viewModel = compact('title', 'student');
-		$this->render($viewModel, 'Student/show');
+		$this->render('Student/show', $viewModel);
 	}
 
 	public function update($id)
