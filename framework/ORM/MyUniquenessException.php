@@ -1,6 +1,6 @@
 <?php
 
-namespace ORM;
+namespace framework\ORM;
 
 class MyUniquenessException extends \Exception
 {

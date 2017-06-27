@@ -1,5 +1,7 @@
 <?php
 
+namespace framework;
+
 class Request
 {
 	private $server, $get, $post;

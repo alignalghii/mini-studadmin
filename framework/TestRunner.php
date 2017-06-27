@@ -1,5 +1,9 @@
 <?php
 
+namespace framework;
+
+use app\Routes; /** @todo: dependency injection */
+
 class TestRunner
 {
 	private $testCases;

@@ -1,6 +1,6 @@
 <?php
 
-namespace MetaTables;
+namespace app\MetaTables;
 
 class StudentMetaTable
 {

@@ -1,5 +1,7 @@
 <?php
 
+namespace framework;
+
 /** Implement Haskell's `Maybe` algebraic datatype via abstract class inheritance and case classes */
 
 abstract class Maybe

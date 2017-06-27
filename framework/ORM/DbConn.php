@@ -1,8 +1,8 @@
 <?php
 
-namespace ORM;
+namespace framework\ORM;
 
-use Config;
+use app\Config; /** @todo: dependency injection */
 
 class DbConn
 {

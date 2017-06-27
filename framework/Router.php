@@ -1,5 +1,9 @@
 <?php
 
+namespace framework;
+
+use app\Config; // @thodo: dependency injection
+
 class Router
 {
 	private $routes;

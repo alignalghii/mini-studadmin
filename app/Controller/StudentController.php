@@ -1,11 +1,12 @@
 <?php
 
-namespace Controller;
+namespace app\Controller;
 
-use ORM\Repository;
-use MetaTables\StudentMetaTable;
+use framework\Controller;
+use framework\ORM\Repository;
+use app\MetaTables\StudentMetaTable;
 
-class StudentController extends \Controller
+class StudentController extends Controller
 {
 	const class54 = __CLASS__;
 

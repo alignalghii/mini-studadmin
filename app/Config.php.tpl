@@ -1,5 +1,7 @@
 <?php
 
+namespace app;
+
 class Config
 {
 	const DB_HOST = '{{{DB_HOST}}}';

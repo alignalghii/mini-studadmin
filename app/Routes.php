@@ -1,7 +1,10 @@
 <?php
 
-use Controller\HomeController;
-use Controller\StudentController;
+namespace app;
+
+use app\Controller\HomeController;
+use app\Controller\StudentController;
+use framework\Maybe;
 
 class Routes
 {

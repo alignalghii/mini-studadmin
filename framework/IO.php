@@ -1,5 +1,7 @@
 <?php
 
+namespace framework;
+
 class IO
 {
 	public static function outputOf($callback)

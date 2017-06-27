@@ -1,9 +1,6 @@
 <?php
 
-namespace ORM;
-
-use ORM\DbConn;
-use ORM\MyTriggerException;
+namespace framework\ORM;
 
 class Statement
 {

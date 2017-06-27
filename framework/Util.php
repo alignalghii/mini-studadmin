@@ -1,5 +1,7 @@
 <?php
 
+namespace framework;
+
 class Util
 {
 	const class54 = __CLASS__;
