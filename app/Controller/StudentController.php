@@ -48,4 +48,11 @@ class StudentController extends Controller
 		echo "Update student #$id with the following data:\n";
 		var_dump($this->request()->post());
 	}
+
+	public function delete($id)
+	{
+		$studentRepository = new Repository(StudentMetaTable::class54);
+		$studentRepository->delete($id);
+		$this->redirect('/student');
+	}
 }

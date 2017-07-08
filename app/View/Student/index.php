@@ -18,7 +18,7 @@
 				<td><?php echo $val; ?></td>
 <?php endforeach; ?>
 				<td><a href="/student/<?php echo $student['id']; ?>">show</a></td>
-				<td>delete</td>
+				<td><form method="POST" action="/student/<?php echo $student['id']; ?>/delete"><input type="submit" value="delete"/></form></td>
 			</tr>
 <?php endforeach; ?>
 		</table>
