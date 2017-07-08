@@ -1,19 +1,26 @@
 		<h1><?php echo $title; ?></h1>
-		<table>
-			<tr>
-				<th rowspan="2">#</th>
-				<th rowspan="2">Name</th>
-				<th rowspan="2">Male?</th>
-				<th>Place</th>
-				<th>Date</th>
-				<th rowspan="2">Email</th>
-			</tr>
-			<tr>
-				<th colspan="2">of birth</th>
-			</tr>
-			<tr>
-<?php foreach ($student as $attr => $val): ?>
-				<td><?php echo $val; ?></td>
-<?php endforeach; ?>
-			</tr>
-		</table>
+		<form>
+			<ul>
+				<li>Identity: <?php echo $student['id']; ?></li>
+				<li>
+					Name:
+					<input type="text" name="name" value="<?php echo $student['name']; ?>"/>
+				</li>
+				<li>
+					Is male?
+					<input type="checkbox" name="is_male"<?php if ($student['is_male']): ?> checked<?php endif; ?>/>
+				</li>
+				<li>
+					Place of birth:
+					<input type="text" name="place_of_birth" value="<?php echo $student['place_of_birth']; ?>"/>
+				</li>
+				<li>
+					Date of birth:
+					<input type="text" name="date_of_birth" value="<?php echo $student['date_of_birth']; ?>"/>
+				</li>
+				<li>
+					Email:
+					<input type="text" name="email" value="<?php echo $student['email']; ?>"/>
+				</li>
+			</ul>
+		</form>

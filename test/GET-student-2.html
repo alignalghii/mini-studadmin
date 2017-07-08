@@ -6,26 +6,30 @@
 	</head>
 	<body>
 		<h1>Show student #2</h1>
-		<table>
-			<tr>
-				<th rowspan="2">#</th>
-				<th rowspan="2">Name</th>
-				<th rowspan="2">Male?</th>
-				<th>Place</th>
-				<th>Date</th>
-				<th rowspan="2">Email</th>
-			</tr>
-			<tr>
-				<th colspan="2">of birth</th>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Joe</td>
-				<td>1</td>
-				<td>New York</td>
-				<td>1975-06-12</td>
-				<td>joe@it.us</td>
-			</tr>
-		</table>
+		<form>
+			<ul>
+				<li>Identity: 2</li>
+				<li>
+					Name:
+					<input type="text" name="name" value="Joe"/>
+				</li>
+				<li>
+					Is male?
+					<input type="checkbox" name="is_male" checked/>
+				</li>
+				<li>
+					Place of birth:
+					<input type="text" name="place_of_birth" value="New York"/>
+				</li>
+				<li>
+					Date of birth:
+					<input type="text" name="date_of_birth" value="1975-06-12"/>
+				</li>
+				<li>
+					Email:
+					<input type="text" name="email" value="joe@it.us"/>
+				</li>
+			</ul>
+		</form>
 	</body>
 </html>
