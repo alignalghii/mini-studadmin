@@ -4,6 +4,8 @@ namespace app\Controller;
 
 use framework\Controller;
 use framework\ORM\Repository;
+use framework\Util;
+
 use app\MetaTables\StudentMetaTable;
 
 class StudentController extends Controller
@@ -14,7 +16,20 @@ class StudentController extends Controller
 	{
 		$title = 'List of all students';
 		$studentRepository = new Repository(StudentMetaTable::class54);
-		$students = $studentRepository->findAll();
+		$studentRecords = $studentRepository->findAll();
+		$students = array_map(
+			function ($studentRecord) {
+				return Util::array_map_access_keys(
+					function ($attr, $val) {
+						return $attr == 'is_male'
+						     ? ($val ? 'Male' : 'Female')
+						     : $val;
+					},
+					$studentRecord
+				);
+			},
+			$studentRecords
+		);
 		$viewModel = compact('title', 'students');
 		$this->render('Student/index', $viewModel);
 	}
