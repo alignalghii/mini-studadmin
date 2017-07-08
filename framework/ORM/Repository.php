@@ -6,11 +6,13 @@ class Repository
 {
 	private $tableName;
 	private $mobileFields;
+	private $convertCB;
 
 	public function __construct($metaTableClassName)
 	{
 		$this->tableName    = $metaTableClassName::NAME;
 		$this->mobileFields = $metaTableClassName::$MOBILE_FIELDS;
+		$this->convertCB    = [$metaTableClassName, 'convert'];
 	}
 
 	public function find($id)
@@ -19,13 +21,16 @@ class Repository
 			'SELECT * FROM `'.$this->tableName.'` WHERE `id` = :id',
 			[':id' => [$id, \PDO::PARAM_INT]]
 		);
-		return $statement->queryOneOrAll(true);
+		$record = $statement->queryOneOrAll(true);
+		$callback = $this->convertCB;
+		return $callback($record);
 	}
 
 	public function findAll()
 	{
 		$statement = new Statement('SELECT * FROM `'.$this->tableName.'`', []);
-		return $statement->queryOneOrAll(false);
+		$records = $statement->queryOneOrAll(false);
+		return array_map($this->convertCB, $records);
 	}
 
 	public function countAll()
