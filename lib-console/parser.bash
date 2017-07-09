@@ -42,6 +42,8 @@ function parse {
 			schema-drop "`db_name`";;
 		dbtest)
 			dbtest-runner "`db_name`";;
+		unit-tests)
+			(cd test; php unit-tests.php);;
 		*)
 			help;
 	esac;
