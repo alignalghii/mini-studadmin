@@ -48,8 +48,9 @@ class StudentController extends Controller
 		$form = new Form(StudentMetaTable::class54);
 		$post = $this->request()->post();
 		$updater = $form->convert($post);
-		echo "Update student #$id with the following data:\n";
-		var_dump($updater);
+		$studentRepository = new Repository(StudentMetaTable::class54);
+		$studentRepository->update($updater, $id);
+		$this->redirect('/student');
 	}
 
 	public function delete($id)

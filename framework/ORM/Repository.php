@@ -50,9 +50,8 @@ class Repository
 	public function update($formEntity, $id)
 	{
 		$builder = new Builder($this->tableName);
-		$updateInfo = $builder->update($formEntity, $this->mobileFields);
+		$updateInfo = $builder->update($formEntity, $this->mobileFields, $id);
 		extract($updateInfo); // $sql, $typedBindings
-		$typedBindings[':id'] = [$id, \PDO::PARAM_INT];
 		new Statement($sql, $typedBindings); // object not used, but statement execution is a side effect
 	}
 

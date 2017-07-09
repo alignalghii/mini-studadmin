@@ -16,11 +16,11 @@ class Routes
 
 	/** PHP 7: const CONFIG = [...] */
 	public static $CONFIG = [
-		'/'                        => ['GET'  => [HomeController::class54,    'index' ]],
-		'/student'                 => ['GET'  => [StudentController::class54, 'index' ]],
-		'/student/([0-9]+)'        => ['GET'  => [StudentController::class54, 'show'  ],
-		                               'POST' => [StudentController::class54, 'update']],
-		'/student/([0-9]+)/delete' => ['POST' => [StudentController::class54, 'delete']],
+		'/'                        => ['GET'  => [HomeController::class54,    'index',  [],         ]],
+		'/student'                 => ['GET'  => [StudentController::class54, 'index',  [],         ]],
+		'/student/([0-9]+)'        => ['GET'  => [StudentController::class54, 'show',   ['intval']  ],
+		                               'POST' => [StudentController::class54, 'update', ['intval']  ]],
+		'/student/([0-9]+)/delete' => ['POST' => [StudentController::class54, 'delete', ['intval']  ]],
 	];
 
 	/** PHP RFC: const TESTCASES = [...] --- immutable objects are yet RFC, see https://wiki.php.net/rfc/immutability */
@@ -56,9 +56,20 @@ class Routes
 						'expectation' => Maybe::nothing()
 			],
 			'PS1' => [
-						'fixture'     => [['POST', '/student/12'     ], [], ['name' => 'John', 'age' => 23]],
-						'expectation' => Maybe::just([self::IS_FILENAME, 'POST-student-12.txt'])
-
+						'fixture'     => [['POST', '/student/2'     ], [], ['name' => 'Joan', 'email' => 'joan@it.us']],
+						'expectation' => Maybe::just([self::IS_DIRECT_TEXT, ''])
+			],
+			'GS2' => [
+						'fixture'     => [['GET',  '/student/2'     ], [], []                              ],
+						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student-22.html'])
+			],
+			'PS2' => [
+						'fixture'     => [['POST', '/student/2'     ], [], ['name' => 'Joe', 'is_male' => 'on', 'email' => 'joe@it.us']],
+						'expectation' => Maybe::just([self::IS_DIRECT_TEXT, ''])
+			],
+			'GS3' => [
+						'fixture'     => [['GET',  '/student/2'     ], [], []                              ],
+						'expectation' => Maybe::just([self::IS_FILENAME, 'GET-student-2.html'])
 			],
 			'PS0' => [
 						'fixture'     => [['POST', '/student/'       ], [], []                             ],

@@ -50,8 +50,12 @@ class Router
 			function () {return false;},
 			function ($args) use ($controllerAction)
 			{
-				list($controllerClass, $action) = $controllerAction;
+				list($controllerClass, $action, $paramTypes) = $controllerAction;
 				$controller = new $controllerClass($this->request);
+				foreach ($args as $i => $arg) {
+					$typeCaster = $paramTypes[$i]; // `intval` or `strval`
+					$args[$i] = $typeCaster($arg);
+				}
 				call_user_func_array([$controller, $action], $args);
 				return true;
 			}

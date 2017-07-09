@@ -11,7 +11,7 @@ class Builder
 		$this->tableName = $tableName;
 	}
 
-	public function update($updaterEntity, $fieldTypings)
+	public function update($updaterEntity, $fieldTypings, $id)
 	{
 		$sqlAssignments = $typedBindings = [];
 		foreach ($fieldTypings as $fieldName => $type) {
@@ -25,6 +25,7 @@ class Builder
 		$sqlBigAssignment = implode(', ', $sqlAssignments);
 		$tableName = $this->tableName;
 		$sql = "UPDATE `$tableName` SET $sqlBigAssignment WHERE `id` = :id";
+		$typedBindings[':id'] = [$id, \PDO::PARAM_INT];
 		return compact('sql', 'typedBindings');
 	}
 

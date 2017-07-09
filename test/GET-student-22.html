@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Show student #2</title>
+	</head>
+	<body>
+		<h1>Show student #2</h1>
+		<form method="POST" action="/student/2">
+			<ul>
+				<li>Identity: 2</li>
+				<li>
+					Name:
+					<input type="text" name="name" value="Joan"/>
+				</li>
+				<li>
+					Is male?
+					<input type="checkbox" name="is_male"/>
+				</li>
+				<li>
+					Place of birth:
+					<input type="text" name="place_of_birth" value="New York"/>
+				</li>
+				<li>
+					Date of birth:
+					<input type="text" name="date_of_birth" value="1975-06-12"/>
+				</li>
+				<li>
+					Email:
+					<input type="text" name="email" value="joan@it.us"/>
+				</li>
+			</ul>
+			<input type="submit" value="Update"/>
+		</form>
+	</body>
+</html>
