@@ -1,7 +1,7 @@
 		<h1><?php echo $title; ?></h1>
-		<form>
+		<form method="POST" action="<?php echo $action; ?>">
 			<ul>
-				<li>Identity: <?php echo $student['id']; ?></li>
+				<?php if ($isUpdateMode): ?><li>Identity: <?php echo $student['id']; ?></li><?php endif; ?>
 				<li>
 					Name:
 					<input type="text" name="name" value="<?php echo $student['name']; ?>"/>
@@ -23,4 +23,5 @@
 					<input type="text" name="email" value="<?php echo $student['email']; ?>"/>
 				</li>
 			</ul>
+			<input type="submit" value="Update"/>
 		</form>

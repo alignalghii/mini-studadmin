@@ -7,6 +7,7 @@ use framework\ORM\Repository;
 use framework\Util;
 
 use app\MetaTables\StudentMetaTable;
+use framework\ViewModelManager;
 
 class StudentController extends Controller
 {
@@ -17,34 +18,32 @@ class StudentController extends Controller
 		$title = 'List of all students';
 		$studentRepository = new Repository(StudentMetaTable::class54);
 		$studentRecords = $studentRepository->findAll();
-		$students = array_map(
-			function ($studentRecord) {
-				return Util::array_map_access_keys(
-					function ($attr, $val) {
-						return $attr == 'is_male'
-						     ? ($val ? 'Male' : 'Female')
-						     : $val;
-					},
-					$studentRecord
-				);
-			},
-			$studentRecords
+		$viewModelManager = new ViewModelManager(
+			function ($attr, $val) {
+				return $attr == 'is_male'
+				     ? ($val ? 'Male' : 'Female')
+				     : $val;
+			}
 		);
+		$students = $viewModelManager->representRecordSet($studentRecords);
 		$viewModel = compact('title', 'students');
 		$this->render('Student/index', $viewModel);
 	}
 
 	public function show($id)
 	{
-		$title = "Show student #$id";
 		$studentRepository = new Repository(StudentMetaTable::class54);
-		$student = $studentRepository->find($id);
-		$viewModel = compact('title', 'student');
+		$title        = "Show student #$id";
+		$student      = $studentRepository->find($id);
+		$isUpdateMode = true;
+		$action       = "/student/$id";
+		$viewModel = compact('title', 'student', 'isUpdateMode', 'action');
 		$this->render('Student/show', $viewModel);
 	}
 
 	public function update($id)
 	{
+		//$form = new Form(StudentMetaTable::class54);
 		echo "Update student #$id with the following data:\n";
 		var_dump($this->request()->post());
 	}
