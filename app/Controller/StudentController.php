@@ -2,12 +2,14 @@
 
 namespace app\Controller;
 
+use app\MetaTables\StudentMetaTable;
+
 use framework\Controller;
 use framework\ORM\Repository;
 use framework\Util;
-
-use app\MetaTables\StudentMetaTable;
 use framework\ViewModelManager;
+use framework\Form;
+
 
 class StudentController extends Controller
 {
@@ -43,9 +45,11 @@ class StudentController extends Controller
 
 	public function update($id)
 	{
-		//$form = new Form(StudentMetaTable::class54);
+		$form = new Form(StudentMetaTable::class54);
+		$post = $this->request()->post();
+		$updater = $form->convert($post);
 		echo "Update student #$id with the following data:\n";
-		var_dump($this->request()->post());
+		var_dump($updater);
 	}
 
 	public function delete($id)
