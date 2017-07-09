@@ -4,16 +4,18 @@ namespace framework;
 
 class Form
 {
-	private $metaTable;
+	private $metaTableName;
 
-	public function __construct($metaTable)
+	public function __construct($metaTableName)
 	{
-		$this->metaTable = $metaTable;
+		$this->metaTableName = $metaTableName;
 	}
 
 	public function convert($record)
 	{
-		$mobileFields = $this->metaTable::$MOBILE_FIELDS;
+		// $this->metaTableName::$MOBILE_FIELDS; // valid in PHP 7, but not in older PHP version. The following two lines are more portable:
+		$metaTableName = $this->metaTableName;
+		$mobileFields = $metaTableName::$MOBILE_FIELDS;
 		return Util::array_mapMaybe_access_keys(
 			function ($attr, $val) use ($mobileFields, $record) {
 				return $mobileFields[$attr] == \PDO::PARAM_BOOL
