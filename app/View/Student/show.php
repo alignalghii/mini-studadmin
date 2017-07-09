@@ -1,7 +1,9 @@
 		<h1><?php echo $title; ?></h1>
 		<form method="POST" action="<?php echo $action; ?>">
 			<ul>
-				<?php if ($isUpdateMode): ?><li>Identity: <?php echo $student['id']; ?></li><?php endif; ?>
+<?php if ($isUpdateMode): ?>
+				<li>Identity: <?php echo $student['id']; ?></li>
+<?php endif; ?>
 				<li>
 					Name:
 					<input type="text" name="name" value="<?php echo $student['name']; ?>"/>

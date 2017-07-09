@@ -17,8 +17,8 @@
 <?php foreach ($student as $attr => $val): ?>
 				<td><?php echo $val; ?></td>
 <?php endforeach; ?>
-				<td><a href="/student/<?php echo $student['id']; ?>">show</a></td>
-				<td><form method="POST" action="/student/<?php echo $student['id']; ?>/delete"><input type="submit" value="delete"/></form></td>
+				<td><a href="/student/<?php echo $student['id']; ?>">Show</a></td>
+				<td><form method="POST" action="/student/<?php echo $student['id']; ?>/delete"><input type="submit" value="Delete"/></form></td>
 			</tr>
 <?php endforeach; ?>
 		</table>
