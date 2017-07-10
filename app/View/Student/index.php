@@ -22,4 +22,4 @@
 			</tr>
 <?php endforeach; ?>
 		</table>
-		<a href="student/new">Add a new student</a>
+		<a href="/student/new">Add a new student</a>
