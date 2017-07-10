@@ -4,7 +4,7 @@ namespace app;
 
 use app\Controller\HomeController;
 use app\Controller\StudentController;
-use framework\Maybe;
+use framework\AlgebraicDataTypes\Maybe;
 
 class Routes
 {

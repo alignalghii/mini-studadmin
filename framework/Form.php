@@ -2,6 +2,8 @@
 
 namespace framework;
 
+use framework\AlgebraicDataTypes\Maybe;
+
 class Form
 {
 	const class54 = __CLASS__;

@@ -2,6 +2,8 @@
 
 namespace framework;
 
+use framework\AlgebraicDataTypes\Maybe;
+
 class IO
 {
 	public static function outputOf($callback)
