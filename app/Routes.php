@@ -16,11 +16,13 @@ class Routes
 
 	/** PHP 7: const CONFIG = [...] */
 	public static $CONFIG = [
-		'/'                        => ['GET'  => [HomeController::class54,    'index',  [],         ]],
-		'/student'                 => ['GET'  => [StudentController::class54, 'index',  [],         ]],
-		'/student/([0-9]+)'        => ['GET'  => [StudentController::class54, 'show',   ['intval']  ],
-		                               'POST' => [StudentController::class54, 'update', ['intval']  ]],
-		'/student/([0-9]+)/delete' => ['POST' => [StudentController::class54, 'delete', ['intval']  ]],
+		'/'                        => ['GET'  => [HomeController::class54,    'index',    [],         ]],
+		'/student'                 => ['GET'  => [StudentController::class54, 'index',    [],         ]],
+		'/student/([0-9]+)'        => ['GET'  => [StudentController::class54, 'show',     ['intval']  ],
+		                               'POST' => [StudentController::class54, 'update',   ['intval']  ]],
+		'/student/([0-9]+)/delete' => ['POST' => [StudentController::class54, 'delete',   ['intval']  ]],
+		'/student/new'             => ['GET'  => [StudentController::class54, 'new_GET',  []          ],
+		                               'POST' => [StudentController::class54, 'new_POST', []          ]],
 	];
 
 	/** PHP RFC: const TESTCASES = [...] --- immutable objects are yet RFC, see https://wiki.php.net/rfc/immutability */

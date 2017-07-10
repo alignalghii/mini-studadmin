@@ -4,6 +4,8 @@ namespace framework;
 
 class Form
 {
+	const class54 = __CLASS__;
+
 	private $metaTableName;
 
 	public function __construct($metaTableName)
@@ -13,7 +15,8 @@ class Form
 
 	public function convert($record)
 	{
-		// $this->metaTableName::$MOBILE_FIELDS; // valid in PHP 7, but not in older PHP version. The following two lines are more portable:
+		// $mobileFields = $this->metaTableName::$MOBILE_FIELDS;
+		// Thle line above is valid in PHP 7, but not in older PHP versions. The following two lines are more portable:
 		$metaTableName = $this->metaTableName;
 		$mobileFields = $metaTableName::$MOBILE_FIELDS;
 		return Util::array_mapMaybe_access_keys(
@@ -27,5 +30,24 @@ class Form
 			},
 			$mobileFields
 		);
+	}
+
+	public function createBlank()
+	{
+		// $mobileFields = $this->metaTableName::$MOBILE_FIELDS;
+		// Thle line above is valid in PHP 7, but not in older PHP versions. The following two lines are more portable:
+		$metaTableName = $this->metaTableName;
+		$mobileFields = $metaTableName::$MOBILE_FIELDS;
+
+		return array_map([self::class54, 'typeDefaults'], $mobileFields);
+	}
+
+	private static function typeDefaults($pdoType)
+	{
+		switch ($pdoType) {
+			case \PDO::PARAM_INT:  return 0;
+			case \PDO::PARAM_BOOL: return false;
+			default:               return "";
+		}
 	}
 }
