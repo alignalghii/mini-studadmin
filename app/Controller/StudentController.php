@@ -35,13 +35,16 @@ class StudentController extends Controller
 
 	public function show($id)
 	{
+		$form              = new Form(StudentMetaTable::class54);
 		$studentRepository = new Repository(StudentMetaTable::class54);
+		$student           = $studentRepository->find($id);
 		$viewModel = [
-			'title'        => "Show student #$id",
-			'student'      => $studentRepository->find($id),
-			'isUpdateMode' => true,
-			'actionLabel'  => "Update",
-			'actionUri'    => "/student/$id"
+			'title'            => "Show student #$id",
+			'student'          => $form->entityViewModel($student),
+			'isUpdateMode'     => true,
+			'actionLabel'      => "Update",
+			'actionUri'        => "/student/$id",
+			'validationErrors' => $form->errorViewModel([])
 		];
 		$this->render('Student/show', $viewModel);
 	}
@@ -49,11 +52,27 @@ class StudentController extends Controller
 	public function update($id)
 	{
 		$form              = new Form(StudentMetaTable::class54);
-		$post              = $this->request()->post();
-		$updaterEntity     = $form->convert($post);
-		$studentRepository = new Repository(StudentMetaTable::class54);
-		$studentRepository->update($updaterEntity, $id);
-		$this->redirect('/student');
+		$post              = compact('id') + $this->request()->post();
+		$validation        = $form->convertAndValidate($post, true);
+		$validation->either(
+			function ($errorComplex) use ($form, $id) {
+				list($invalidEntity, $errorModel) = $errorComplex;
+				$viewModel = [
+					'title'            => "Update student #$id &bull; there are " . count($errorModel) . " validation errors",
+					'actionLabel'      => 'Update',
+					'actionUri'        => "/student/$id",
+					'student'          => $form->entityViewModel($invalidEntity),
+					'isUpdateMode'     => true,
+					'validationErrors' => $form->errorViewModel($errorModel)
+				];
+				$this->render('Student/show', $viewModel);
+			},
+			function ($validEntity) use ($id) {
+				$studentRepository = new Repository(StudentMetaTable::class54);
+				$studentRepository->update($validEntity, $id);
+				$this->redirect('/student');
+			}
+		);
 	}
 
 	public function delete($id)
@@ -67,21 +86,38 @@ class StudentController extends Controller
 	{
 		$form = new Form(StudentMetaTable::class54);
 		$viewModel = [
-			'title'        => 'Add a new student',
-			'actionLabel'  => 'Create',            'actionUri' => '/student/new',
-			'isUpdateMode' => false,
-			'student'      => $form->createBlank()
+			'title'            => 'Add a new student',
+			'actionLabel'      => 'Create',            'actionUri' => '/student/new',
+			'isUpdateMode'     => false,
+			'student'          => $form->entityViewModel([]),
+			'validationErrors' => $form->errorViewModel ([])
 		];
 		$this->render('Student/show', $viewModel);
 	}
 
 	public function new_POST()
 	{
-		$post              = $this->request()->post();
-		$form              = new Form(StudentMetaTable::class54);
-		$createrEntity     = $form->convert($post);
-		$studentRepository = new Repository(StudentMetaTable::class54);
-		$studentRepository->create($createrEntity);
-		$this->redirect('/student');
+		$post       = $this->request()->post();
+		$form       = new Form(StudentMetaTable::class54);
+		$validation = $form->convertAndValidate($post, false);
+		$validation->either(
+			function ($errorComplex) use ($form) {
+				list($invalidEntity, $errorModel) = $errorComplex;
+				$viewModel = [
+					'title'            => "Add a new student &bull; there are " . count($errorModel) . " validation errors",
+					'actionLabel'      => 'Create',
+					'actionUri'        => '/student/new',
+					'isUpdateMode'     => false,
+					'student'          => $form->entityViewModel($invalidEntity),
+					'validationErrors' => $form->errorViewModel ($errorModel)
+				];
+				$this->render('Student/show', $viewModel);
+			},
+			function ($validEntity) {
+				$studentRepository = new Repository(StudentMetaTable::class54);
+				$studentRepository->create($validEntity);
+				$this->redirect('/student');
+			}
+		);
 	}
 }

@@ -2,17 +2,20 @@
 
 namespace framework\ORM;
 
+use framework\Meta;
+
 class Repository
 {
 	private $tableName;
 	private $mobileFields;
-	private $convertCB;
 
 	public function __construct($metaTableClassName)
 	{
 		$this->tableName    = $metaTableClassName::NAME;
-		$this->mobileFields = $metaTableClassName::$MOBILE_FIELDS;
-		$this->convertCB    = [$metaTableClassName, 'convert'];
+		$this->mobileFields = array_map(
+			function ($arr) {return $arr[0];}, // mapHead
+			$metaTableClassName::$MOBILE_FIELDS
+		);
 	}
 
 	public function find($id)
@@ -22,15 +25,14 @@ class Repository
 			[':id' => [$id, \PDO::PARAM_INT]]
 		);
 		$record = $statement->queryOneOrAll(true);
-		$callback = $this->convertCB;
-		return $callback($record);
+		return $this->convertFetched($record);
 	}
 
 	public function findAll()
 	{
 		$statement = new Statement('SELECT * FROM `'.$this->tableName.'`', []);
-		$records = $statement->queryOneOrAll(false);
-		return array_map($this->convertCB, $records);
+		$records   = $statement->queryOneOrAll(false);
+		return array_map([$this, 'convertFetched'], $records);
 	}
 
 	public function countAll()
@@ -62,4 +64,30 @@ class Repository
 		extract($deletionInfo); // $sql, $typedBindings
 		new Statement($sql, $typedBindings); // object not used, but statement execution is a side effect
 	}
+
+	private function convertFetched($record)
+	{
+		$mobileFields = $this->mobileFields;
+		$convertedRecord = [];
+		foreach (['id' => \PDO::PARAM_INT] + $mobileFields as $fieldName => $type) {
+			if (array_key_exists($fieldName, $record)) {
+				$value = $record[$fieldName];
+				switch ($type) {
+					case \PDO::PARAM_BOOL:
+						$convertedRecord[$fieldName] = (bool)   $value;
+						break;
+					case \PDO::PARAM_INT:
+						$convertedRecord[$fieldName] = (int)    $value;
+						break;
+					case \PDO::PARAM_STR:
+						$convertedRecord[$fieldName] = (string) $value;
+						break;
+					default:
+						$convertedRecord[$fieldName] =          $value;
+				}
+			}
+		}
+		return $convertedRecord;
+	}
+
 }

@@ -9,19 +9,8 @@ class StudentMetaTable
 	const NAME = 'student';
 
 	public static $MOBILE_FIELDS = [
-		'name'           => \PDO::PARAM_STR,    'is_male'       => \PDO::PARAM_BOOL,
-		'place_of_birth' => \PDO::PARAM_STR,    'date_of_birth' => \PDO::PARAM_STR,
-		'email'          => \PDO::PARAM_STR
+		'name'           => [\PDO::PARAM_STR, false, null],    'is_male'       => [\PDO::PARAM_BOOL, false, false],
+		'place_of_birth' => [\PDO::PARAM_STR, true,  null],    'date_of_birth' => [\PDO::PARAM_STR,  true,  null ],
+		'email'          => [\PDO::PARAM_STR, false, null]
 	];
-
-	public static function convert($record)
-	{
-		$convertedRecord = [];
-		foreach ($record as $attr => $val) {
-			$convertedRecord[$attr] = array_key_exists($attr, static::$MOBILE_FIELDS) && static::$MOBILE_FIELDS[$attr] == \PDO::PARAM_BOOL
-			                        ? (bool) $val
-			                        :        $val;
-		}
-		return $convertedRecord;
-	}
 }
