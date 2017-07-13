@@ -3,6 +3,7 @@
 require '../autoload.php';
 
 use framework\Util;
+use framework\Meta;
 use framework\AlgebraicDataTypes\Maybe;
 use framework\AlgebraicDataTypes\Either;
 
@@ -31,6 +32,18 @@ function reportEither($eitherErrorLabelOrNumResult)
 }
 $status = reportEither($right5) == 'The value is: 5' && reportEither($leftDiv0) == 'Problem: Division by zero';
 printStatus($status);
-
 $allStatus = $allStatus && $status;
+
+/**
+ * Ther is no way to implemant `safeExtract`
+ * @see https://stackoverflow.com/questions/2251386/can-we-implement-a-php-extract-function-in-php-with-out-using-zend-api
+ *
+ * echo ' - framework\Meta::safeExtract: ';
+ * $status0 = !isset($two) && !isset($three) &&!isset($four);
+ * Meta::safeExtract(['two', 'four'], ['two' => 2, 'three' => 3]);
+ * $status = $status0 && $two === 2 && !isset($three) && !isset($four);
+ * printStatus($status);
+ * $allStatus = $allStatus && $status;
+ */
+
 echo "-------> Overall status: " . statusMsg($allStatus) . "\n";
