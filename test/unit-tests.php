@@ -40,31 +40,19 @@ $leftDiv0 = Either2Or1::left2(13, 3);
 $right5   = Either2Or1::right1(2);
 function division($a, $b)
 {
-	if ($a % $b == 0) {
-		return Either2Or1::right1($a / $b);
-	} else {
-		$d = gcd($a, $b);
-		return Either2Or1::left2($a / $d, $b / $d);
-	}
+	$q = (int) ($a / $b);
+	$r = $a % $b;
+	return $r ? Either2Or1::left2($q, $r) : Either2Or1::right1($q);
 }
-function divRep($e)
+function divMsg($e)
 {
 	return $e->either2Or1(
-		function ($a0, $b0) {return "Problem: $a0 is not divisible by $b0";},
-		function ($q)       {return "The value is: $q";}
+		function ($q, $r) {return "Problem: no divisibility, q = $q, r = $r";},
+		function ($q)     {return "The value is: $q";}
 	);
 }
-function gcd($a, $b)
-{
-	while ($b > 0) {
-		$q = (int) ($a / $b);
-		$r = $a % $b;		
-		$a = $b;
-		$b = $r;
-	}
-	return $a;
-}
-$status = divRep(division(100, 2)) == "The value is: 50" && divRep(division(36, 24)) == "Problem: 3 is not divisible by 2";
+
+$status = divMsg(division(100, 2)) == "The value is: 50" && divMsg(division(36, 24)) == "Problem: no divisibility, q = 1, r = 12";
 printStatus($status);
 $allStatus = $allStatus && $status;
 
