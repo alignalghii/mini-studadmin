@@ -6,6 +6,7 @@ use framework\Util;
 use framework\Meta;
 use framework\AlgebraicDataTypes\Maybe;
 use framework\AlgebraicDataTypes\Either;
+use framework\AlgebraicDataTypes\Either2Or1;
 
 function statusMsg($status) {return $status ? 'OK' : 'Wrong';}
 function printStatus($status) {echo statusMsg($status) . "\n";}
@@ -31,6 +32,39 @@ function reportEither($eitherErrorLabelOrNumResult)
 	);
 }
 $status = reportEither($right5) == 'The value is: 5' && reportEither($leftDiv0) == 'Problem: Division by zero';
+printStatus($status);
+$allStatus = $allStatus && $status;
+
+echo ' - framework\AlgebraicDataTypes\Either2Or1: ';
+$leftDiv0 = Either2Or1::left2(13, 3);
+$right5   = Either2Or1::right1(2);
+function division($a, $b)
+{
+	if ($a % $b == 0) {
+		return Either2Or1::right1($a / $b);
+	} else {
+		$d = gcd($a, $b);
+		return Either2Or1::left2($a / $d, $b / $d);
+	}
+}
+function divRep($e)
+{
+	return $e->either2Or1(
+		function ($a0, $b0) {return "Problem: $a0 is not divisible by $b0";},
+		function ($q)       {return "The value is: $q";}
+	);
+}
+function gcd($a, $b)
+{
+	while ($b > 0) {
+		$q = (int) ($a / $b);
+		$r = $a % $b;		
+		$a = $b;
+		$b = $r;
+	}
+	return $a;
+}
+$status = divRep(division(100, 2)) == "The value is: 50" && divRep(division(36, 24)) == "Problem: 3 is not divisible by 2";
 printStatus($status);
 $allStatus = $allStatus && $status;
 

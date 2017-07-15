@@ -54,9 +54,8 @@ class StudentController extends Controller
 		$form              = new Form(StudentMetaTable::class54);
 		$post              = compact('id') + $this->request()->post();
 		$validation        = $form->convertAndValidate($post, true);
-		$validation->either(
-			function ($errorComplex) use ($form, $id) {
-				list($invalidEntity, $errorModel) = $errorComplex;
+		$validation->either2Or1(
+			function ($invalidEntity, $errorModel) use ($form, $id) {
 				$viewModel = [
 					'title'            => "Update student #$id &bull; there are " . count($errorModel) . " validation errors",
 					'actionLabel'      => 'Update',
@@ -100,9 +99,8 @@ class StudentController extends Controller
 		$post       = $this->request()->post();
 		$form       = new Form(StudentMetaTable::class54);
 		$validation = $form->convertAndValidate($post, false);
-		$validation->either(
-			function ($errorComplex) use ($form) {
-				list($invalidEntity, $errorModel) = $errorComplex;
+		$validation->either2Or1(
+			function ($invalidEntity, $errorModel) use ($form) { // in case of failed validation
 				$viewModel = [
 					'title'            => "Add a new student &bull; there are " . count($errorModel) . " validation errors",
 					'actionLabel'      => 'Create',
@@ -113,7 +111,7 @@ class StudentController extends Controller
 				];
 				$this->render('Student/show', $viewModel);
 			},
-			function ($validEntity) {
+			function ($validEntity) { // in case of successful validation
 				$studentRepository = new Repository(StudentMetaTable::class54);
 				$studentRepository->create($validEntity);
 				$this->redirect('/student');

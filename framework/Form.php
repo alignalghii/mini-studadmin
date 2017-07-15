@@ -3,7 +3,7 @@
 namespace framework;
 
 use framework\ORM\Repository;
-use framework\AlgebraicDataTypes\Either;
+use framework\AlgebraicDataTypes\Either2Or1;
 
 class Form
 {
@@ -108,8 +108,8 @@ class Form
 			}
 		}
 		return empty($errorModel)
-		     ? Either::right($entity)                // valid entity
-		     : Either::left([$entity, $errorModel]); // invalid entity
+		     ? Either2Or1::right1($entity)               // valid entity
+		     : Either2Or1::left2 ($entity, $errorModel); // invalid entity
 	}
 
 	private function isNotUniqueWith($fieldName, $value, $entity)
