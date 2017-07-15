@@ -7,8 +7,10 @@
 				<li>
 					Name:
 					<input type="text" name="name" value="<?php echo $student['name']; ?>"/>
+<?php if ($validationErrors['name']): ?>
 					<?php echo $validationErrors['name']; ?>
 
+<?php endif; ?>
 				</li>
 				<li>
 					Is male?
@@ -21,14 +23,18 @@
 				<li>
 					Date of birth:
 					<input type="text" name="date_of_birth" value="<?php echo $student['date_of_birth']; ?>"/>
+<?php if ($validationErrors['date_of_birth']): ?>
 					<?php echo $validationErrors['date_of_birth']; ?>
 
+<?php endif; ?>
 				</li>
 				<li>
 					Email:
 					<input type="text" name="email" value="<?php echo $student['email']; ?>"/>
+<?php if ($validationErrors['email']): ?>
 					<?php echo $validationErrors['email']; ?>
 
+<?php endif; ?>
 				</li>
 			</ul>
 			<input type="submit" value="<?php echo $actionLabel; ?>"/>
