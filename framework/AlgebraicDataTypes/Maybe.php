@@ -4,7 +4,7 @@ namespace framework\AlgebraicDataTypes;
 
 /** Implement Haskell's `Maybe` algebraic datatype via abstract class inheritance and case classes */
 
-abstract class Maybe
+abstract class MaybeCore
 {
 	public static function just($value)
 	{
@@ -26,7 +26,36 @@ abstract class Maybe
 			function ($value) use ($f) {return static::just($f($value));}
 		);
 	}
+}
 
+/** The two case classes: */
+
+class Just extends Maybe
+{
+	private $value;
+
+	public function __construct($value) {$this->value = $value;}
+
+	public function maybe($nothingCallback, $justCallback)
+	{
+		return $justCallback($this->value);
+	}
+}
+
+class Nothing extends Maybe
+{
+	public function __construct() {}
+
+	public function maybe($nothingCallback, $justCallback)
+	{
+		return $nothingCallback();
+	}
+}
+
+// The final, extended class
+
+abstract class Maybe extends MaybeCore
+{
 	public function defaulting($defaultValue)
 	{
 		return $this->maybe(
@@ -66,28 +95,5 @@ abstract class Maybe
 			}
 		);
 	}
-}
 
-/** The two case classes: */
-
-class Just extends Maybe
-{
-	private $value;
-
-	public function __construct($value) {$this->value = $value;}
-
-	public function maybe($nothingCallback, $justCallback)
-	{
-		return $justCallback($this->value);
-	}
-}
-
-class Nothing extends Maybe
-{
-	public function __construct() {}
-
-	public function maybe($nothingCallback, $justCallback)
-	{
-		return $nothingCallback();
-	}
 }
