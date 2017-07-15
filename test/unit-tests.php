@@ -2,7 +2,7 @@
 
 require '../autoload.php';
 
-use framework\Util;
+use framework\Utility\MaybeExt;
 use framework\Meta;
 use framework\AlgebraicDataTypes\Maybe;
 use framework\AlgebraicDataTypes\Either;
@@ -15,8 +15,8 @@ $allStatus = true;
 
 echo "Inspected functionalities:\n";
 
-echo ' - framework\Util::array_mapMaybe_access_keys: ';
-$r = Util::array_mapMaybe_access_keys(function($k, $v) {return Maybe::just($k + $v);}, [10,20,30]);
+echo ' - framework\Utility\MaybeExt::array_mapMaybe_access_keys: ';
+$r = MaybeExt::array_mapMaybe_access_keys(function($k, $v) {return Maybe::just($k + $v);}, [10,20,30]);
 $status = $r === [10, 21, 32];
 printStatus($status);
 $allStatus = $allStatus && $status;

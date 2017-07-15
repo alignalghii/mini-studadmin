@@ -2,6 +2,8 @@
 
 namespace framework;
 
+use framework\Utility\MaybeExt;
+
 class ViewModelManager
 {
 	private $attrValRepresentFunction;
@@ -14,7 +16,7 @@ class ViewModelManager
 	public function representRecordSet($records)
 	{
 		return array_map(
-			function ($record) {return Util::array_map_access_keys($this->attrValRepresentFunction, $record);},
+			function ($record) {return MaybeExt::array_map_access_keys($this->attrValRepresentFunction, $record);},
 			$records
 		);
 	}
