@@ -39,6 +39,7 @@ class StudentController extends Controller
 		$student           = $studentRepository->find($id);
 		$viewModel = [
 			'title'            => "Show student #$id",
+			'errorSummaryMsg'  => '',
 			'student'          => $form->entityViewModel($student),
 			'isUpdateMode'     => true,
 			'actionLabel'      => "Update",
@@ -56,12 +57,13 @@ class StudentController extends Controller
 		$validation->either2Or1(
 			function ($invalidEntity, $errorModel) use ($form, $id) {
 				$viewModel = [
-					'title'            => "Update student #$id &bull; there are " . count($errorModel) . " validation errors",
+					'title'            => "Update student #$id",
 					'actionLabel'      => 'Update',
 					'actionUri'        => "/student/$id",
 					'student'          => $form->entityViewModel($invalidEntity),
 					'isUpdateMode'     => true,
-					'validationErrors' => $form->errorViewModel($errorModel)
+					'validationErrors' => $form->errorViewModel($errorModel),
+					'errorSummaryMsg'  => "There are " . count($errorModel) . " validation errors",
 				];
 				$this->render('Student/show', $viewModel);
 			},
@@ -88,7 +90,8 @@ class StudentController extends Controller
 			'actionLabel'      => 'Create',            'actionUri' => '/student/new',
 			'isUpdateMode'     => false,
 			'student'          => $form->entityViewModel([]),
-			'validationErrors' => $form->errorViewModel ([])
+			'validationErrors' => $form->errorViewModel ([]),
+			'errorSummaryMsg'  => '',
 		];
 		$this->render('Student/show', $viewModel);
 	}
@@ -101,12 +104,13 @@ class StudentController extends Controller
 		$validation->either2Or1(
 			function ($invalidEntity, $errorModel) use ($form) { // in case of failed validation
 				$viewModel = [
-					'title'            => "Add a new student &bull; there are " . count($errorModel) . " validation errors",
+					'title'            => 'Add a new student',
 					'actionLabel'      => 'Create',
 					'actionUri'        => '/student/new',
 					'isUpdateMode'     => false,
 					'student'          => $form->entityViewModel($invalidEntity),
-					'validationErrors' => $form->errorViewModel ($errorModel)
+					'validationErrors' => $form->errorViewModel ($errorModel),
+					'errorSummaryMsg'  => "There are " . count($errorModel) . " validation errors",
 				];
 				$this->render('Student/show', $viewModel);
 			},

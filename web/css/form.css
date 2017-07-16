@@ -1,0 +1,16 @@
+.mandatory {
+	font-weight: bold;
+}
+
+.unique {
+	font-style: italic;
+}
+
+.errorSummary {
+	color: red;
+	font-weight: bold;
+}
+
+.error {
+	color: red;
+}

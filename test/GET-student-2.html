@@ -2,16 +2,23 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
+		<link rel="stylesheet" href="/css/form.css"/>
 		<title>Show student #2</title>
 	</head>
 	<body>
 		<h1>Show student #2</h1>
+		<h2>Constraint rules and errors</h2>
+		<ul>
+			<li>Fields decorated with an asterisk<sup>*</sup> superscript and typeset with <span class="mandatory">boldface font</span> are mandatory!</li>
+			<li>Fields decorated with a small 1 number superscipt<sup>1</sup> and typeset with <span class="unique">italic font</span> must be unique among all records!</li>
+		</ul>
+		<h2>Watch or fill</h2>
 		<form method="POST" action="/student/2">
 			<ul>
 				<li>Identity: 2</li>
 				<li>
-					Name:
-					<input type="text" name="name" value="Joe"/>
+					<span class="mandatory">Name:<sup>*</sup></span>
+					<input type="text" name="name" value="Joe" placeholder="Not necessarily unique!"/>
 				</li>
 				<li>
 					Is male?
@@ -23,11 +30,11 @@
 				</li>
 				<li>
 					Date of birth:
-					<input type="text" name="date_of_birth" value="1975-06-12"/>
+					<input type="text" name="date_of_birth" value="1975-06-12" placeholder="yyyy-mm-dd"/>
 				</li>
 				<li>
-					Email:
-					<input type="text" name="email" value="joe@it.us"/>
+					<span class="mandatory unique">Email:<sup>*1</sup></span>
+					<input type="text" name="email" value="joe@it.us" placeholder="Unique! Format: xy@host.com"/>
 				</li>
 			</ul>
 			<input type="submit" value="Update"/>
