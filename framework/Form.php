@@ -80,31 +80,51 @@ class Form
 
 	public function validate($entity)
 	{
+		// $mobileFields = $this->metaTableName::$MOBILE_FIELDS;
+		// The line above is valid in PHP 7, but not in older PHP versions. The following two lines are more portable:
+		$metaTableName = $this->metaTableName;
+		$mobileFields  = $metaTableName::$MOBILE_FIELDS;
+
 		$errorModel = [];
 		foreach ($entity as $fieldName => $value) {
-			switch ($fieldName) {
-				case 'name':
-					if (!$value) $errorModel[$fieldName] = 'Cannot be blank';
-					break;
-				case 'date_of_birth':
-					try {
-						if ($value != null) {
-							$date = new \DateTime($value);
-							$entity[$fieldName] = $date->format('Y-m-d');
-						}
-					} catch(\Exception $e) {
-						$errorModel[$fieldName] = 'Invalid date format';
+			if (array_key_exists($fieldName, $mobileFields)) {
+				$fieldMetaData = $mobileFields[$fieldName];
+				list ($pdoType, $isNullable, $default, $constraints) = $fieldMetaData;
+				$leaveLoop = false;
+				foreach ($constraints as $constraint) {
+					switch ($constraint) {
+						case 'nonblank':
+							if (!$value) {
+								$errorModel[$fieldName] = 'Cannot be blank';
+								$leaveLoop = true;
+							}
+							break;
+						case 'dateformat':
+							try {
+								if (!empty($value)) { // no NOW-default convention here
+									$date = new \DateTime($value);
+									$entity[$fieldName] = $date->format('Y-m-d');
+								}
+							} catch(\Exception $e) {
+								$errorModel[$fieldName] = 'Invalid date format';
+								$leaveLoop = true;
+							}
+							break;
+						case 'emailformat':
+							if (!preg_match('/^\w+@(\w+\.)*\w+/', $value)) {
+								$errorModel[$fieldName] = 'Invalid email format';
+								$leaveLoop = true;
+							}
+							break;
+						case 'unique':
+							if ($n = $this->isNotUniqueWith($fieldName, $value, $entity)) {
+								$errorModel[$fieldName] = "Multiple ($n) identical `$value`-occurrence(s) of the unique field `$fieldName`";
+								$leaveLoop = true;
+							}
+							break;
 					}
-					break;
-				case 'email':
-					if (!$value) {
-						$errorModel[$fieldName] = 'Cannot be blank';
-					} elseif (!preg_match('/^\w+@(\w+\.)*\w+/', $value)) {
-						$errorModel[$fieldName] = 'Invalid email format';
-					} elseif ($n = $this->isNotUniqueWith($fieldName, $value, $entity)) {
-						$errorModel[$fieldName] = "Multiple ($n) identical `$value`-occurrence(s) of the unique field `$fieldName`";
-					}
-					break;
+					if ($leaveLoop) break;
+				}
 			}
 		}
 		return empty($errorModel)
