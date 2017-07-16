@@ -4,6 +4,7 @@ namespace app;
 
 use app\Controller\HomeController;
 use app\Controller\StudentController;
+use app\Controller\StudyGroupController;
 use framework\AlgebraicDataTypes\Maybe;
 
 class Routes
@@ -23,6 +24,13 @@ class Routes
 		'/student/([0-9]+)/delete' => ['POST' => [StudentController::class54, 'delete',   ['intval']  ]],
 		'/student/new'             => ['GET'  => [StudentController::class54, 'new_GET',  []          ],
 		                               'POST' => [StudentController::class54, 'new_POST', []          ]],
+
+		'/study-group'                 => ['GET'  => [StudyGroupController::class54, 'index',    [],         ]],
+		'/study-group/([0-9]+)'        => ['GET'  => [studyGroupController::class54, 'show',     ['intval']  ],
+		                                   'POST' => [studyGroupController::class54, 'update',   ['intval']  ]],
+		'/study-group/([0-9]+)/delete' => ['POST' => [studyGroupController::class54, 'delete',   ['intval']  ]],
+		'/study-group/new'             => ['GET'  => [studyGroupController::class54, 'new_GET',  []          ],
+		                                   'POST' => [studyGroupController::class54, 'new_POST', []          ]],
 	];
 
 	/** PHP RFC: const TESTCASES = [...] --- immutable objects are yet RFC, see https://wiki.php.net/rfc/immutability */
