@@ -73,7 +73,7 @@ class Form
 			list($type, $nullable, $defaultIfAny) = $fieldMetaData;
 			$specialCase = !array_key_exists($fieldName, $entity) && !$nullable && !isset($defaultIfAny);
 			if ($specialCase) {
-				throw new Exception('Wrong form: some mandatory fields are missing');
+				throw new \Exception('Wrong form: some mandatory fields are missing');
 			}
 		}
 	}
