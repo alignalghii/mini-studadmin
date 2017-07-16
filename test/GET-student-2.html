@@ -7,11 +7,6 @@
 	</head>
 	<body>
 		<h1>Show student #2</h1>
-		<h2>Constraint rules and errors</h2>
-		<ul>
-			<li>Fields decorated with an asterisk<sup>*</sup> superscript and typeset with <span class="mandatory">boldface font</span> are mandatory!</li>
-			<li>Fields decorated with a small 1 number superscipt<sup>1</sup> and typeset with <span class="unique">italic font</span> must be unique among all records!</li>
-		</ul>
 		<h2>Watch or fill</h2>
 		<form method="POST" action="/student/2">
 			<ul>
@@ -37,8 +32,14 @@
 					<input type="text" name="email" value="joe@it.us" placeholder="Unique! Format: xy@host.com"/>
 				</li>
 			</ul>
-			<input type="submit" value="Update"/>
 			<a href="/student/2">Reset</a>
+			<input type="submit" value="Update"/>
 		</form>
+		<h2>Notations and constraint rules</h2>
+		<ul>
+			<li>Fields decorated with an asterisk<sup>*</sup> superscript and typeset with <span class="mandatory">boldface font</span> are mandatory!</li>
+			<li>Fields decorated with a small 1 number superscipt<sup>1</sup> and typeset with <span class="unique">italic font</span> must be unique among all records!</li>
+			<li>Values in fields like date, email etc. must adhere to their respective format, just like in real life.</li>
+		</ul>
 	</body>
 </html>

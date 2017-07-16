@@ -1,12 +1,4 @@
 		<h1><?php echo $title; ?></h1>
-		<h2>Constraint rules and errors</h2>
-		<ul>
-			<li>Fields decorated with an asterisk<sup>*</sup> superscript and typeset with <span class="mandatory">boldface font</span> are mandatory!</li>
-			<li>Fields decorated with a small 1 number superscipt<sup>1</sup> and typeset with <span class="unique">italic font</span> must be unique among all records!</li>
-		</ul>
-<?php if ($errorSummaryMsg): ?>
-		<span class="errorSummary"><?php echo $errorSummaryMsg; ?></span>
-<?php endif; ?>
 		<h2>Watch or fill</h2>
 		<form method="POST" action="<?php echo $actionUri; ?>">
 			<ul>
@@ -43,6 +35,15 @@
 <?php endif; ?>
 				</li>
 			</ul>
-			<input type="submit" value="<?php echo $actionLabel; ?>"/>
 			<a href="<?php echo $actionUri; ?>">Reset</a>
+			<input type="submit" value="<?php echo $actionLabel; ?>"/>
+<?php if ($errorSummaryMsg): ?>
+			<span class="errorSummary"><?php echo $errorSummaryMsg; ?></span>
+<?php endif; ?>
 		</form>
+		<h2>Notations and constraint rules</h2>
+		<ul>
+			<li>Fields decorated with an asterisk<sup>*</sup> superscript and typeset with <span class="mandatory">boldface font</span> are mandatory!</li>
+			<li>Fields decorated with a small 1 number superscipt<sup>1</sup> and typeset with <span class="unique">italic font</span> must be unique among all records!</li>
+			<li>Values in fields like date, email etc. must adhere to their respective format, just like in real life.</li>
+		</ul>

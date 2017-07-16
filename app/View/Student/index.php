@@ -1,4 +1,5 @@
 		<h1><?php echo $title; ?></h1>
+		<a class="add" href="/student/new">Add a new student</a>
 		<table class="records">
 			<col class="content" span="6"/>
 			<col class="action"  span="2"/>
@@ -24,4 +25,3 @@
 			</tr>
 <?php endforeach; ?>
 		</table>
-		<a class="add" href="/student/new">Add a new student</a>
