@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
+		<link rel="stylesheet" href="/css/form.css"/>
 		<title><?php echo $title; ?></title>
 	</head>
 	<body>

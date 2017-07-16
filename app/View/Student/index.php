@@ -1,5 +1,7 @@
 		<h1><?php echo $title; ?></h1>
-		<table>
+		<table class="records">
+			<col class="content" span="6"/>
+			<col class="action"  span="2"/>
 			<tr>
 				<th rowspan="2">#</th>
 				<th rowspan="2">Name</th>
@@ -18,8 +20,8 @@
 				<td><?php echo $val; ?></td>
 <?php endforeach; ?>
 				<td><a href="/student/<?php echo $student['id']; ?>">Show</a></td>
-				<td><form method="POST" action="/student/<?php echo $student['id']; ?>/delete"><input type="submit" value="Delete"/></form></td>
+				<td><form method="POST" action="/student/<?php echo $student['id']; ?>/delete"><input type="submit" value="Delete" class="delete"/></form></td>
 			</tr>
 <?php endforeach; ?>
 		</table>
-		<a href="/student/new">Add a new student</a>
+		<a class="add" href="/student/new">Add a new student</a>

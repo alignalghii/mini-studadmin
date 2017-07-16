@@ -29,7 +29,7 @@ class StudentController extends Controller
 			'title'    => 'List of all students',
 			'students' => $viewModelManager->representRecordSet($studentRecords)
 		];
-		$this->render('Student/index', $viewModel);
+		$this->render('Student/index', $viewModel, 'table-page');
 	}
 
 	public function show($id)
@@ -46,7 +46,7 @@ class StudentController extends Controller
 			'actionUri'        => "/student/$id",
 			'validationErrors' => $form->errorViewModel([])
 		];
-		$this->render('Student/show', $viewModel);
+		$this->render('Student/show', $viewModel, 'form-page');
 	}
 
 	public function update($id)
@@ -65,7 +65,7 @@ class StudentController extends Controller
 					'validationErrors' => $form->errorViewModel($errorModel),
 					'errorSummaryMsg'  => "There are " . count($errorModel) . " validation errors",
 				];
-				$this->render('Student/show', $viewModel);
+				$this->render('Student/show', $viewModel, 'form-page');
 			},
 			function ($validEntity) use ($id) {
 				$studentRepository = new Repository(StudentMetaTable::class54);
@@ -93,7 +93,7 @@ class StudentController extends Controller
 			'validationErrors' => $form->errorViewModel ([]),
 			'errorSummaryMsg'  => '',
 		];
-		$this->render('Student/show', $viewModel);
+		$this->render('Student/show', $viewModel, 'form-page');
 	}
 
 	public function new_POST()
@@ -112,7 +112,7 @@ class StudentController extends Controller
 					'validationErrors' => $form->errorViewModel ($errorModel),
 					'errorSummaryMsg'  => "There are " . count($errorModel) . " validation errors",
 				];
-				$this->render('Student/show', $viewModel);
+				$this->render('Student/show', $viewModel, 'form-page');
 			},
 			function ($validEntity) { // in case of successful validation
 				$studentRepository = new Repository(StudentMetaTable::class54);

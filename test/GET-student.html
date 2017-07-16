@@ -2,12 +2,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<link rel="stylesheet" href="/css/form.css"/>
+		<link rel="stylesheet" href="/css/table.css"/>
 		<title>List of all students</title>
 	</head>
 	<body>
 		<h1>List of all students</h1>
-		<table>
+		<table class="records">
+			<col class="content" span="6"/>
+			<col class="action"  span="2"/>
 			<tr>
 				<th rowspan="2">#</th>
 				<th rowspan="2">Name</th>
@@ -28,7 +30,7 @@
 				<td>1970-02-05</td>
 				<td>ruth@computing.hu</td>
 				<td><a href="/student/1">Show</a></td>
-				<td><form method="POST" action="/student/1/delete"><input type="submit" value="Delete"/></form></td>
+				<td><form method="POST" action="/student/1/delete"><input type="submit" value="Delete" class="delete"/></form></td>
 			</tr>
 			<tr>
 				<td>2</td>
@@ -38,7 +40,7 @@
 				<td>1975-06-12</td>
 				<td>joe@it.us</td>
 				<td><a href="/student/2">Show</a></td>
-				<td><form method="POST" action="/student/2/delete"><input type="submit" value="Delete"/></form></td>
+				<td><form method="POST" action="/student/2/delete"><input type="submit" value="Delete" class="delete"/></form></td>
 			</tr>
 			<tr>
 				<td>3</td>
@@ -48,7 +50,7 @@
 				<td>1968-01-30</td>
 				<td>rachel@math.de</td>
 				<td><a href="/student/3">Show</a></td>
-				<td><form method="POST" action="/student/3/delete"><input type="submit" value="Delete"/></form></td>
+				<td><form method="POST" action="/student/3/delete"><input type="submit" value="Delete" class="delete"/></form></td>
 			</tr>
 			<tr>
 				<td>4</td>
@@ -58,9 +60,9 @@
 				<td>1985-08-11</td>
 				<td>hilde@chem.at</td>
 				<td><a href="/student/4">Show</a></td>
-				<td><form method="POST" action="/student/4/delete"><input type="submit" value="Delete"/></form></td>
+				<td><form method="POST" action="/student/4/delete"><input type="submit" value="Delete" class="delete"/></form></td>
 			</tr>
 		</table>
-		<a href="/student/new">Add a new student</a>
+		<a class="add" href="/student/new">Add a new student</a>
 	</body>
 </html>

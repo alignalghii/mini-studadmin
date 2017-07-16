@@ -1,0 +1,32 @@
+table.records {
+	border-collapse: collapse;
+}
+
+table.records, table.records th, table.records td {
+	border: 1px solid black
+}
+
+table.record th, table.records td {
+	padding: 5px;
+}
+
+table.records th {
+	background-color: yellow;
+}
+
+table.records col.content {
+	background-color: LightGray;
+}
+
+table.records col.action {
+	background-color: Pink;
+}
+
+a.add {
+	background-color: lightgreen;
+}
+
+.delete {
+	background-color: red;
+	color: yellow;
+}
