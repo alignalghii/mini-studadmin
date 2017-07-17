@@ -1,3 +1,6 @@
+		<ul class="upper-menu">
+			<li><a class="menu-icon" href="/student">Back to students list</a></li>
+		</ul>
 		<h1><?php echo $title; ?></h1>
 		<h2>Watch or fill</h2>
 		<form method="POST" action="<?php echo $actionUri; ?>">

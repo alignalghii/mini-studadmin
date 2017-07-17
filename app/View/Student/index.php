@@ -1,3 +1,7 @@
+		<ul class="upper-menu">
+			<li><a class="menu-icon" href="/">Back to home</a></li>
+			<li><a class="menu-icon" href="/study-group">Change to see study groups list instead</a></li>
+		</ul>
 		<h1><?php echo $title; ?></h1>
 		<a class="add" href="/student/new">Add a new student</a>
 		<table class="records">

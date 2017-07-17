@@ -1,0 +1,17 @@
+ul.upper-menu {
+	list-style-type: none;
+	margin:  0;
+	padding: 0.3em;
+	background-color: darkgray;
+}
+
+ul.upper-menu li {
+	display: inline-block;
+}
+
+ul.upper-menu li a {
+	padding-left: 1em;
+	padding-right: 1em;
+	color: yellow;
+	background-color: darkblue;
+}
