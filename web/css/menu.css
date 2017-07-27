@@ -2,7 +2,14 @@ ul.upper-menu {
 	list-style-type: none;
 	margin:  0;
 	padding: 0.3em;
+}
+
+ul.internal {
 	background-color: darkgray;
+}
+
+ul.external {
+	background-color: black;
 }
 
 ul.upper-menu li {
@@ -12,6 +19,13 @@ ul.upper-menu li {
 ul.upper-menu li a {
 	padding-left: 1em;
 	padding-right: 1em;
+}
+
+ul.internal li a {
 	color: yellow;
 	background-color: darkblue;
+}
+
+ul.external li a {
+	background-color: yellow;
 }

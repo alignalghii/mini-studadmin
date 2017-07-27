@@ -1,4 +1,8 @@
-		<ul class="upper-menu">
+		<ul class="upper-menu external">
+			<li><a class="menu-icon" href="https://github.com/alignalghii/mini-studadmin">GitHub repository</a></li>
+			<li><a class="menu-icon" href="https://github.com/alignalghii/mini-studadmin/blob/master/app/Controller/StudyGroupController.php">Source file of the concerned controller</a></li>
+		</ul>
+		<ul class="upper-menu internal">
 			<li><a class="menu-icon" href="/study-group">Back to study groups list</a></li>
 		</ul>
 		<h1><?php echo $title; ?></h1>
