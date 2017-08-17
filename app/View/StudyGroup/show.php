@@ -1,7 +1,6 @@
-		<ul class="upper-menu external">
-			<li><a class="menu-icon" href="https://github.com/alignalghii/mini-studadmin">GitHub repository</a></li>
-			<li><a class="menu-icon" href="https://github.com/alignalghii/mini-studadmin/blob/master/app/Controller/StudyGroupController.php">Source file of the concerned controller</a></li>
-		</ul>
+<?php require $isUpdateMode ? '../app/View/StudyGroup/show-update.sourcelinks.php'
+                            : '../app/View/StudyGroup/show-create.sourcelinks.php';
+?>
 		<ul class="upper-menu internal">
 			<li><a class="menu-icon" href="/study-group">Back to study groups list</a></li>
 		</ul>
@@ -44,6 +43,9 @@
 			<span class="errorSummary"><?php echo $errorSummaryMsg; ?></span>
 <?php endif; ?>
 		</form>
+<?php require $isUpdateMode ? '../app/View/StudyGroup/update.sourcelinks.php'
+                            : '../app/View/StudyGroup/create.sourcelinks.php';
+?>
 		<h2>Notations and constraint rules</h2>
 		<ul>
 			<li>Fields decorated with an asterisk<sup>*</sup> superscript and typeset with <span class="mandatory">boldface font</span> are mandatory!</li>

@@ -1,7 +1,4 @@
-		<ul class="upper-menu external">
-			<li><a class="menu-icon" href="https://github.com/alignalghii/mini-studadmin">GitHub repository</a></li>
-			<li><a class="menu-icon" href="https://github.com/alignalghii/mini-studadmin/blob/master/app/Controller/StudyGroupController.php">Source file of the concerned controller</a></li>
-		</ul>
+<?php require '../app/View/StudyGroup/index.sourcelinks.php'; ?>
 		<ul class="upper-menu internal">
 			<li><a class="menu-icon" href="/">Back to home</a></li>
 			<li><a class="menu-icon" href="/student">Change to see students list instead</a></li>
@@ -25,7 +22,12 @@
 				<td><?php echo $val; ?></td>
 <?php endforeach; ?>
 				<td><a href="/study-group/<?php echo $studyGroup['id']; ?>">Show</a></td>
-				<td><form method="POST" action="/study-group/<?php echo $studyGroup['id']; ?>/delete"><input type="submit" value="Delete" class="delete"/></form></td>
+				<td>
+					<form method="POST" action="/study-group/<?php echo $studyGroup['id']; ?>/delete">
+						<input type="submit" value="Delete" class="delete"/>
+<?php require '../app/View/StudyGroup/delete.sourcelinks.php'; ?>
+					</form>
+				</td>
 			</tr>
 <?php endforeach; ?>
 		</table>

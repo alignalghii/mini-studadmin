@@ -11,7 +11,7 @@ table.record th, table.records td {
 }
 
 table.records th {
-	background-color: yellow;
+	background-color: gray;
 }
 
 table.records col.content {

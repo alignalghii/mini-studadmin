@@ -8,8 +8,11 @@ ul.internal {
 	background-color: darkgray;
 }
 
-ul.external {
+ul.external a {
 	background-color: black;
+	color: white;
+	font-family: monospace;
+	text-decoration: none;
 }
 
 ul.upper-menu li {
@@ -26,6 +29,28 @@ ul.internal li a {
 	background-color: darkblue;
 }
 
-ul.external li a {
-	background-color: yellow;
+a.source {
+	background-color: black;
+	color: white;
+	font-family: monospace;
+	text-decoration: none;
+}
+
+table.tree th {
+	background-color: black;
+}
+
+td.full {
+	text-align: center;
+}
+
+td.full0 {
+	background-color: black;
+	text-align: center;
+}
+
+table.tree td.full a {
+	display: block;
+	width: 100%;
+	background-color: black;
 }
