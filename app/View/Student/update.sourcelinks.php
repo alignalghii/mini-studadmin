@@ -18,7 +18,7 @@ https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40
 				<td>&rarr;</td>
 				<td title="ORM\Repository::findAll"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/framework/ORM/Repository.php#L31-L36" target="_blank">Global check</a></td>
 				<td>&#8600;</td>
-				<td rowspan="2" title="email: unique" class="full"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/app/MetaTables/StudentMetaTable.php#16" target="_blank">Table metadata @ PHP</a></td>
+				<td rowspan="2" title="email: unique" class="full"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/app/MetaTables/StudentMetaTable.php#L16" target="_blank">Table metadata @ PHP</a></td>
 				<td rowspan="2">&#8600;</td>
 				<td></td>
 			</tr>
@@ -30,7 +30,7 @@ https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40
 			</tr>
 			<tr>
 				<td colspan="4"></td>
-				<td class="full" colspan="5" title="Repository::update"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/framework/ORM/Repository.php#L52-L58" target="_blank">Model</a></td>
+				<td class="full" colspan="5" title="ORM\Repository::update"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/framework/ORM/Repository.php#L52-L58" target="_blank">Model</a></td>
 				<td>&rarr;</td>
 				<td class="full" title="ORM\Builder::update"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/framework/ORM/Builder.php#L14-L30" target="_blank">SQL-builder</a></td>
 				<td>&#8599;</td>
