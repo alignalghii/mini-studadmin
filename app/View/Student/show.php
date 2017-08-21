@@ -1,5 +1,5 @@
-<?php require $isUpdateMode ? '../app/View/Student/show.sourcelinks.php'
-                            : '../app/View/Student/show.sourcelinks.php';
+<?php require $isUpdateMode ? '../app/View/Student/show-update.sourcelinks.php'
+                            : '../app/View/Student/show-create.sourcelinks.php';
 ?>
 		<ul class="upper-menu internal">
 			<li><a class="menu-icon" href="/student">Back to students list</a></li>
