@@ -26,7 +26,7 @@ https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40
 				<td>&#8600;</td>
 				<td colspan="5"></td>
 				<td>&#8599;</td>
-				<td title="CREATE TABLE `student`"class="full"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/database/schema/table-create-student.sql" target="_blank">SQL schema</a></td>
+				<td title="CREATE TABLE `student`" class="full"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/database/schema/table-create-student.sql" target="_blank">SQL schema</a></td>
 			</tr>
 			<tr>
 				<td colspan="4"></td>
