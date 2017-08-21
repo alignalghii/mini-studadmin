@@ -1,12 +1,12 @@
 		<table class="tree">
 			<tr>
-				<th colspan="5"><a class="source" href="https://github.com/alignalghii/mini-studadmin" target="_blank">GitHub repository</a></td>
+				<th colspan="9" title="alignalghii/mini-studadmin"><a class="source" href="https://github.com/alignalghii/mini-studadmin" target="_blank">GitHub repository</a></td>
 			</tr>
 			<tr>
-				<td><a class="source" title="" href="" target="_blank">Route match</a></td>
-				<td title="called at &hellip;">&rarr;</td>			
-				<td><a class="source" title="" href="" target="_blank">Controller action</a></td>
+				<td title="GET <?php echo $actionUri; ?>"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/app/Routes.php#L32" target="_blank">Route match</a></td>
 				<td title="called at &hellip;">&rarr;</td>
-				<td><a class="source" href="" target="_blank">View</a></td>
+				<td title="StudyGroupController::new_GET"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/app/Controller/StudyGroupController.php#L78-L91" target="_blank">Controller action</a></td>
+				<td>&rarr;</td>
+				<td colspan="5" title="StudyGroup/show"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/app/View/StudyGroup/show.php" target="_blank">View</a></td>
 			</tr>
 		</table>
