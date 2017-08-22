@@ -11,7 +11,7 @@
 				<td title="called at &hellip;">&rarr;</td>			
 				<td title="name, leader, subject, created"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/app/MetaTables/StudyGroupMetaTable.php" target="_blank">Table metadata @ PHP</a></td>
 				<td title="called at &hellip;">&rarr;</td>			
-				<td title="CREATE TABLE `study_group`"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/database/schema/table-create-study_group.sql" target="_blank">SQL schema</a></td>
+				<td title="CREATE TABLE `study_group`"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/database/schema/table-create-study_group.sql" target="_blank">Raw SQL schema</a></td>
 			</tr>
 			<tr>
 				<td title="called at &hellip;">&#8600;</td>
