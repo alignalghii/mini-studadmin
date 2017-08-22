@@ -36,7 +36,7 @@ a.source {
 	text-decoration: none;
 }
 
-table.tree th {
+table.tree th, table.tree-nested th {
 	background-color: black;
 }
 
@@ -49,8 +49,12 @@ td.full0 {
 	text-align: center;
 }
 
-table.tree td.full a {
+table.tree td.full a, table.tree-nested td.full a {
 	display: block;
 	width: 100%;
 	background-color: black;
+}
+
+table.tree-nested {
+	display: inline-table;
 }

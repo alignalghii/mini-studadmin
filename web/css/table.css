@@ -2,11 +2,11 @@ table.records {
 	border-collapse: collapse;
 }
 
-table.records, table.records th, table.records td {
-	border: 1px solid black
+table.records, table.records th, table.records > tr > td, table.records > tbody > tr > td {
+	border: 1px solid black;
 }
 
-table.record th, table.records td {
+table.records th, table.records > tr > td, table.records > tbody > tr > td {
 	padding: 5px;
 }
 

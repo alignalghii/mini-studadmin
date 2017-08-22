@@ -22,7 +22,12 @@
 				<td><?php echo $val; ?></td>
 <?php endforeach; ?>
 				<td><a href="/student/<?php echo $student['id']; ?>">Show</a></td>
-				<td><form method="POST" action="/student/<?php echo $student['id']; ?>/delete"><input type="submit" value="Delete" class="delete"/></form></td>
+				<td>
+					<form method="POST" action="/student/<?php echo $student['id']; ?>/delete">
+						<input type="submit" value="Delete" class="delete"/>
+<?php require '../app/View/Student/delete.sourcelinks.php'; ?>
+					</form>
+				</td>
 			</tr>
 <?php endforeach; ?>
 		</table>
