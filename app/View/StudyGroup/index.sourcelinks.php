@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td title="called at &hellip;">&#8600;</td>
-				<td title="StudyGroup/index" class="full"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/92efdbce271416373b116ec348a40d30e216a2e2/app/View/StudyGroup/index.php" target="_blank">View</a></td>
+				<td title="StudyGroup/index" class="full"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/master/app/View/StudyGroup/index.php" target="_blank">View</a></td>
 				<td colspan="4"></td>
 			</tr>
 		</table>
