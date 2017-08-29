@@ -10,7 +10,3 @@
 				<td title="Home/index" class="full"><a class="source" href="https://github.com/alignalghii/mini-studadmin/blob/master/app/View/Home/index.php" target="_blank">View</a></td>
 			</tr>
 		</table>
-		<ul class="upper-menu internal">
-			<li><a class="menu-icon" href="/student">Students list</a></li>
-			<li><a class="menu-icon" href="/study-group">Study groups list</a></li>
-		</ul>
