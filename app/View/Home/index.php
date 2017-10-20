@@ -11,12 +11,14 @@
 		<ul>
 			<li>Most frameworks are usually complex and hard. This site tries to present an an artificially simplified web framework.</li>
 			<li>
-				Besides this, true understanding requires the ability to associate the dynamic behavior of the living web application to the static structure of the source code. The dynamic behavior and the static code should be understood almost side-by-side.
+				Understanding a web app requires the ability to associate the dynamic behavior of the living, running web application to the static structure of underlying source code. The dynamic behavior of the user-visible surface and the static code should be understood almost side-by-side.
 			</li>
 		</ul>
 		<p>
-			This latter is the other main goal of this site. The user, looking at the visible surface of the web app, can see the various subpages and widgets. These act as control points, where he/she can trigger functionalities. The main novelty is that there is a call tree link graph beside each control point/widget. These documentary links show the sourcecodes associated to each user-visible control widget,
-			thus for each functionality/behaviour the user can see the underlying sourcecode, moreover, he/she can look through the whole call tree.
+			This latter is the other main goal of this site. The user, looking at the visible surface of the web app, can see the various subpages and widgets. These act as control points, from where the user can trigger functionalities. But the user may also choose to investigate the underlying source code belonging to a widget instead of triggering it.
+		</p>
+		<p>
+			Visually, this means that right to each functionality button there is a graph-like figure, consisting of linkified, labelled black boxes connected by arrows, representing the call tree belonging to the functionality of that button. A similar figure is visible also at the very top of each page (including this page): this represents the call tree triggered by the page itself, when it is being GET-requested by the user from the server.
 		</p>
 		<p>For an example, just look at the top of this very page!</p>
 		<ul>
@@ -31,6 +33,7 @@
 				This graph does not belong to the business logic of the web app:
 				these links do not contain any functionality, they simply point to appropriate GitHub sourcecode sections.
 				What the whole graph figure represents is the call tree triggered by the GET request when accessing this page.
+				This is rather simple, but form actions (submit and delete buttons) have also their standalone calltree/sourcecode figures, anf they can be rather complicated, as form actions usually involve database operations, going through the entire depth of tboth the web app and the framework.
 			</li>
 		</ul>
 		In short, summarizing all above:
@@ -45,7 +48,4 @@
 			<li>
 				The pages of the sample app can show the sourcecode associated to all its widgets and behavior <a href="/doc/selfdoc">in a self-documenting way</a>.
 			</li>
-		</ul>
-		<h2>Contents, site map</h2>
-		<ul>
 		</ul>
